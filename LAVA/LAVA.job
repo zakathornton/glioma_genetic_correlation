@@ -1,0 +1,20 @@
+### This job script which will copy all the data to the temp dir, perform the analysis for a single phenotype pair, and copy the results back
+
+# parameters passed from the submission script
+source $1 # path for settings file
+P1=$2 # phenotype 1
+P2=$3 # phenotype 2
+
+# copy data to tempdir
+cp $EXP_DATA/$P1.sumstats.txt $TMPDIR                                   # exposure sumstats
+cp $OUT_DATA/$P2.sumstats.txt $TMPDIR                                   # outcome sumstats
+cp $MAIN/$INFOFILE $MAIN/$OVERLAP $MAIN/$LOCFILE $TMPDIR                # info file / sample overlap / locus file
+cp $REFDIR/$REFDAT* $TMPDIR                                             # reference data
+cp lava.R $TMPDIR                                                       # analysis script
+cd $TMPDIR
+
+## ANALYSE ## 
+Rscript lava.R $REFDAT $LOCFILE $INFOFILE "$P1;$P2" "$P1.$P2"
+
+# copy results to local output dir (as specified in settings.sh) 
+cp *univ *bivar $OUT
