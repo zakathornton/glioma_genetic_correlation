@@ -4,9 +4,9 @@ dat<-read.delim("snps.txt")
 
 ## Set the locus parameters
 
-CHR<-17
-start<-69245591
-end<-70495119
+CHR<-1
+start<-204092538
+end<-205009623
 
 ## Subset the data to the locus parameters
 
