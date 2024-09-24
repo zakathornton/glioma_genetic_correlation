@@ -4,7 +4,7 @@ library(data.table)
 
 ## Load the raw data
 
-data<-read.delim("~/OneDrive - University of Bristol/GenCorr/Data/Exposure/colorectal/rashkin/rectum_raw.tsv")
+data<-read.delim("rectum_raw.tsv")
 
 ## Calculate the beta and se from OR
 
@@ -43,4 +43,4 @@ data<-data[!duplicated(data$SNP),]
 
 ## Save the new data
 
-write.table(data, "~/OneDrive - University of Bristol/GenCorr/Data/Exposure/colorectal/rashkin_new/rectum_data.txt", quote = F, row.names = F)
+write.table(data, "rectum_data.txt", quote = F, row.names = F)
